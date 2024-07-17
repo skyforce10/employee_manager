@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use App\Models\Company;
+use Yajra\DataTables\DataTables;
 
 class CompanyController extends Controller
 {
     public function showCompManageForm(){
         return view('companymanager');
+    }
+    public function showcompanylist(){
+        return view('companylist');
     }
 
     public function saveCompanyInfo(Request $request){
@@ -21,5 +26,14 @@ class CompanyController extends Controller
         throw ValidationException::withMessages([
             'compname' => [trans('auth.failed')],
         ]);
+    }
+
+    public function getcopanies()
+    {
+        if(\request()->ajax()){
+            $companies = Company::latest()->get();
+            return DataTables::of($companies)->make(true);
+        }
+        
     }
 }
