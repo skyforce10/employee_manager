@@ -27,7 +27,7 @@
             @endif
             <div class="col-lg-3 col-md-6 mb-4">
                 <button type="button" class="btn btn-success btn-lg btn-block btn-custom d-flex flex-column align-items-center"
-                onclick="callemployeemanager()">
+                onclick="callemployeelist()">
                     <i class="fas fa-user-plus fa-2x mb-5"></i> Employees list
                 </button>
             </div>
@@ -54,6 +54,9 @@
             window.location.href = "{{ route('companylist') }}";
         }
         function callemployeemanager() {
-            window.location.href = "{{ route('employee') }}";
+            window.location.href = "{{ route('employeemanager') }}";
+        }
+        function callemployeelist() {
+            window.location.href = "{{ route('employeelist') }}";
         }
     </script>

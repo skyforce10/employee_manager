@@ -10,7 +10,8 @@ use Yajra\DataTables\DataTables;
 class CompanyController extends Controller
 {
     public function showCompManageForm(){
-        return view('companymanager');
+        $companies = Company::latest()->get();
+        return view('companymanager',['companies'=>$companies]);
     }
     public function showcompanylist(){
         return view('companylist');
@@ -34,6 +35,6 @@ class CompanyController extends Controller
             $companies = Company::latest()->get();
             return DataTables::of($companies)->make(true);
         }
-        
+        return [];
     }
 }

@@ -33,6 +33,8 @@ Route::get('/company/list', [CompanyController::class, 'showcompanylist'])->name
 Route::post('/company', [CompanyController::class, 'saveCompanyInfo'])->name('savecompinfo');
 Route::get('/company/getlist', [CompanyController::class, 'getcopanies'])->name('getcopanies');
 
-Route::get('/employee', [EmployeeController::class, 'showEmployeeManagerForm'])->name('employee');
+Route::get('/employeemanager', [EmployeeController::class, 'showEmployeeManagerForm'])->name('employeemanager');
+Route::get('/employee/list', [EmployeeController::class, 'showEmployeeList'])->name('employeelist');
+Route::get('/getemployees', [EmployeeController::class, 'getemployees'])->name('getemployees');
 
 
