@@ -19,6 +19,8 @@
                 <th>Name</th>
                 <th>Address</th>
                 <th>website</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -38,7 +40,24 @@
                 columns: [
                     { data: 'name', name: 'name' },
                     { data: 'address', name: 'address' },
-                    { data: 'website', name: 'website' }
+                    { data: 'website', name: 'website' },
+                    { 
+                data: null,
+                name: 'action_edit',
+                orderable: false,
+                searchable: false,
+                render: function(data, type, row) {
+                    return '<i class="fas fa-edit" aria-hidden="true"></i>';
+                }
+            }, { 
+                data: null,
+                name: 'action_delete',
+                orderable: false,
+                searchable: false,
+                render: function(data, type, row) {
+                    return '<i class="fa fa-trash-alt" aria-hidden="true"></i>';
+                }
+            }
                 ]
             });
         });

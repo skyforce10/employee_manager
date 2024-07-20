@@ -5,6 +5,11 @@
 <section>
   <form id="usermanagerform" action="{{ route('savecompinfo') }}" method="post" enctype="multipart/form-data">
     @csrf
+    @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
     <div class="container mt-5">
       <div class="row" style="font-size: 18px;">
         <div class="col-md-6">
@@ -13,10 +18,10 @@
           <input type="hidden" id="input_company_code" name="input_company_code" class="form-control"  value="">
           <div class="form-group">
             <label for="fullname">Company Name*</label>
-            <input type="text" class="form-control @error('email') is-invalid @enderror" id="input_company_name" name="input_company_name" 
+            <input type="text" class="form-control @error('company_exists') is-invalid @enderror" id="input_company_name" name="input_company_name" 
              required oninvalid="this.setCustomValidity('Fill Company Name Field')" 
             oninput="this.setCustomValidity('')" autocomplete="off">
-            @error('compname')
+            @error('company_exists')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -30,19 +35,24 @@
         oninput="this.setCustomValidity('')" autocomplete="off"></textarea>
 </div>
 <div class="form-group">
-    <label for="input_company_name">Website</label>
-    <input type="url" class="form-control" id="input_company_website" name="input_company_website"
+    <label for="input_company_website">Website</label>
+    <input type="text" class="form-control @error('input_company_website') is-invalid @enderror" id="input_company_website" name="input_company_website"
     required oninvalid="validateURL(this)" oninput="setCustomValidity('')" autocomplete="off">
+    @error('input_company_website')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
 </div>
          
 
         </div>
-        <div class="col-md-6 text-center" id="profilePicture" data-path="{{ public_path('profile_picture') }}">
+        <div class="col-md-6 text-center" id="profilePicture" data-path="{{ public_path('company_logo') }}">
           <h2>Add Logo</h2>
           <div class="dropdown-divider"></div>
           <label class="btn btn-secondary btn-sm" style="font-size: 18px;">
             <i class="fas fa-upload"></i> Upload Picture
-            <input type="file" id="profile_picture" name="profile_picture" style="display:none;" 
+            <input type="file" id="company_logo" name="company_logo" style="display:none;" 
             accept="image/*" onchange="previewImage(this)" />
           </label>
           <p class="mt-2">JPG، PNG، GIF</p>

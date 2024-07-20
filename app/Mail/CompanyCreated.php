@@ -6,19 +6,21 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Company;
 
-class sendmail extends Mailable
+class CompanyCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $company;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Company $company)
     {
-        //
+        $this->company = $company;
     }
 
     /**
@@ -28,6 +30,6 @@ class sendmail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('companymanager');
     }
 }

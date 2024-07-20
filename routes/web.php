@@ -32,6 +32,8 @@ Route::get('/company', [CompanyController::class, 'showCompManageForm'])->name('
 Route::get('/company/list', [CompanyController::class, 'showcompanylist'])->name('companylist');
 Route::post('/company', [CompanyController::class, 'saveCompanyInfo'])->name('savecompinfo');
 Route::get('/company/getlist', [CompanyController::class, 'getcopanies'])->name('getcopanies');
+Route::get('/company/statistic', [CompanyController::class, 'showcompanystatistic'])->name('statistic');
+Route::get('/company/getstatistic', [CompanyController::class, 'getcompemployeenb'])->name('getstatistic');
 
 Route::get('/employeemanager', [EmployeeController::class, 'showEmployeeManagerForm'])->name('employeemanager');
 Route::get('/employee/list', [EmployeeController::class, 'showEmployeeList'])->name('employeelist');

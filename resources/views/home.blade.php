@@ -28,17 +28,18 @@
             <div class="col-lg-3 col-md-6 mb-4">
                 <button type="button" class="btn btn-success btn-lg btn-block btn-custom d-flex flex-column align-items-center"
                 onclick="callemployeelist()">
-                    <i class="fas fa-user-plus fa-2x mb-5"></i> Employees list
+                    <i class="fas fa-user-circle fa-2x mb-5"></i> Employees list
                 </button>
             </div>
             <div class="col-lg-3 col-md-6 mb-4">
                 <button type="button" class="btn btn-danger btn-lg btn-block btn-custom d-flex flex-column align-items-center"
                 onclick="callemployeemanager()">
-                    <i class="fas fa-user-circle fa-2x mb-5"></i> Add new employee
+                    <i class="fas fa-user-plus fa-2x mb-5"></i> Add new employee
                 </button>
             </div>
             <div class="col-lg-3 col-md-6 mb-4">
-                <button type="button" class="btn btn-warning btn-lg btn-block btn-custom d-flex flex-column align-items-center">
+                <button type="button" class="btn btn-warning btn-lg btn-block btn-custom d-flex flex-column align-items-center"
+                onclick="callcompstatistic()">
                     <i class="fas fa-print fa-2x mb-5"></i> Company Statistics
                 </button>
             </div>
@@ -58,5 +59,8 @@
         }
         function callemployeelist() {
             window.location.href = "{{ route('employeelist') }}";
+        }
+        function callcompstatistic() {
+            window.location.href = "{{ route('statistic') }}";
         }
     </script>
