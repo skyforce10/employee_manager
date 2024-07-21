@@ -8,6 +8,11 @@
             font-size: 24px;
         }
     </style>
+  @if (session('error'))
+    <div class="alert alert-danger">
+      {{ session('error') }}
+    </div>
+    @endif  
 <div class="container mt-5">
         <div class="row">
             <div class="col-lg-3 col-md-6 mb-4">

@@ -22,8 +22,11 @@ class EmployeeFactory extends Factory
             'married' => $this->faker->boolean,
             'number_of_kids' => $this->faker->numberBetween(0, 5),
             'profile_picture' => $this->faker->imageUrl(100, 100, 'people'),
-            'phone_numbers' => $this->faker->randomElements([$this->faker->phoneNumber, $this->faker->phoneNumber], 2),
-            'company_id' => Company::factory(),
+            'phone_numbers' => json_encode([
+                ['Phone' => $this->faker->phoneNumber],
+                ['Fax' => $this->faker->phoneNumber]
+            ]),
+            'company_id' => Company::inRandomOrder()->first()->id, 
         ];
     }
 }

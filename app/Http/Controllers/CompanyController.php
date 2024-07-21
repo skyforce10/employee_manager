@@ -19,8 +19,12 @@ class CompanyController extends Controller
 {
     public function showCompManageForm()
     {
-        $companies = Company::latest()->get();
-        return view('companymanager', ['companies' => $companies]);
+        return view('companymanager');
+    }
+    public function showCompEditForm($id)
+    {
+        $company = Company::where('id', $id)->first();
+        return view('companymanager', ['company' => $company]);
     }
 
     public function showcompanylist()
@@ -35,6 +39,8 @@ class CompanyController extends Controller
 
     public function saveCompanyInfo(Request $request)
     {
+        $companyid = $request->input('input_company_code');
+
         $validator = Validator::make($request->all(), [
             'input_company_name' => 'required|string',
             'input_company_website' => 'url',
@@ -57,6 +63,7 @@ class CompanyController extends Controller
         $validatedData = $validator->validated();
         $validatedData['input_company_address'] = $request->input('input_company_address');
         //=============================check company logo
+        $validatedData['company_logo'] = '';
         if ($request->hasFile('company_logo')) {
             $file = $request->file('company_logo');
             $filename = time() . '_' . $file->getClientOriginalName();
@@ -100,7 +107,11 @@ class CompanyController extends Controller
             }
         }
         //========================save after validation
-        $company = new Company();
+        if ($companyid != '') {
+            $company = Company::where('id', $companyid)->first();
+        } else {
+            $company = new Company();  
+        }
         $company->name = $validatedData['input_company_name'];
         $company->address = $validatedData['input_company_address'];
         $company->website = $validatedData['input_company_website'];
@@ -131,16 +142,28 @@ class CompanyController extends Controller
     {
         if (\request()->ajax()) {
             $results = Company::withCount('employees')
-            ->get()
-            ->map(function ($company) {
-                return [
-                    'name' => $company->name,
-                    'address' => $company->address,
-                    'nbemployee' => $company->employees_count,
-                ];
-            });
+                ->get()
+                ->map(function ($company) {
+                    return [
+                        'name' => $company->name,
+                        'address' => $company->address,
+                        'nbemployee' => $company->employees_count,
+                    ];
+                });
             return DataTables::of($results)->make(true);
         }
         return [];
+    }
+
+    public function deletecompany($comp_id)
+    {
+        try {
+            $company = Company::findOrFail($comp_id);
+            $company->delete();
+
+            return response()->json(['message' => 'Company deleted successfully!'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An error occurred while trying to delete the company.'], 500);
+        }
     }
 }
