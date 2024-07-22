@@ -61,7 +61,7 @@
                         <input type="number" class="form-control " id="input_nbkids" name="input_nbkids" autocomplete="off" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="example">Company</label>
+                        <label for="emp_comp">Company</label>
                         <select class="form-control select2" id="emp_comp" name="emp_comp" style="width: 100%;">
                             @if($companies)
                             @foreach ($companies as $company)
@@ -226,6 +226,7 @@
         $("#input_first_name").val('{{$employee->first_name}}');
         $("#input_last_name").val('{{$employee->last_name}}');
         $("#input_email").val('{{$employee->email}}');
+        $('#emp_comp').val('{{$employee->company_id}}').trigger('change');
 
         var imagePathvar = '{{$employee->profile_picture}}';
         var preview = document.getElementById('image-preview');

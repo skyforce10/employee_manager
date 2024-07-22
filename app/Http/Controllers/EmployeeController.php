@@ -20,12 +20,11 @@ class EmployeeCOntroller extends Controller
     public function showEmpEditForm($id)
     {
         $employee = Employee::where('id', $id)->first();
-        $phone_numbers_array = $employee->phone_numbers;
+        $phone_numbers_array = json_decode($employee->phone_numbers, true);
         $phone_numbers=[];
         if(sizeof($phone_numbers_array)){
-        $decodedArray = json_decode($phone_numbers_array, true);
         $phone_numbers = [];
-        foreach ($decodedArray as $entry) {
+        foreach ($phone_numbers_array as $entry) {
             foreach ($entry as $key => $value) {
                 $phone_numbers[$key] = $value;
             }
