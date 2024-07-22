@@ -262,11 +262,11 @@
         <div class="form-group">
            <select class="form-select form-control" name="phone_type[]">
   <option selected>Select Phone Type</option>
- <option value="Phone" selected>Phone</option>
-                                                <option value="Mobile">Mobile</option>
-                                                <option value="Fax">Fax</option>
-                                                <option value="Work">Work</option>
-                                                <option value="Other">Other</option>
+ <option value="Phone" {{ $index == 'Phone' ? 'selected' : '' }}>Phone</option>
+ <option value="Mobile" {{ $index == 'Mobile' ? 'selected' : '' }}>Mobile</option>
+  <option value="Fax" {{ $index == 'Fax' ? 'selected' : '' }}>Fax</option>
+   <option value="Work" {{ $index == 'Work' ? 'selected' : '' }}>Work</option>
+   <option value="Other" {{ $index == 'Other' ? 'selected' : '' }}>Other</option>
 </select>
         </div>
     </td>
