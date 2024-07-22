@@ -237,7 +237,7 @@
         }
         $('#input_nbkids').val('{{$employee->number_of_kids}}');
 
-
+        
         var imagePathvar = '{{$employee->profile_picture}}';
         var preview = document.getElementById('image-preview');
         preview.innerHTML = '';
@@ -246,12 +246,15 @@
         img.className = 'img-fluid';
         img.style.maxWidth = '200px'; // Set the maximum width to 100px
         preview.appendChild(img);
+
+        $('#phone_table tbody').empty();
     });
-    $('#phone_table tbody').empty();
+    
 </script>
 @if(isset($phone_numbers))
 @foreach($phone_numbers as $index => $phone_number)
 <script>
+    $(document).ready(function() {
     var newRow = `
 <tr class="text-center" style="font-weight: bold;">
     
@@ -280,8 +283,8 @@
 </tr>
 `;
 
-
-    $('#phone_table tbody').append(newRow);
+$('#phone_table tbody').append(newRow);
+    });
 </script>
 @endforeach
 @endif
