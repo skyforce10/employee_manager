@@ -1,5 +1,6 @@
 employee manager application
 
+
 1# create laravel 8.x project employee_manager
 
 2# install laravel ui for authentication
@@ -13,6 +14,7 @@ employee manager application
 5# create table migration and seed fake data:
    php artisan migrate
    php artisan db:seed
+   ## Password used in users table: 12345678
 
 4# Login->auth()->role->admin->(all forms)
    Login->auth()->role->user->(company list, company statistic, employee list/manage(without delete))
