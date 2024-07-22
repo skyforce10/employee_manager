@@ -227,6 +227,16 @@
         $("#input_last_name").val('{{$employee->last_name}}');
         $("#input_email").val('{{$employee->email}}');
         $('#emp_comp').val('{{$employee->company_id}}').trigger('change');
+        var maried_var="{{$employee->married}}";
+        if(maried_var==1){
+           $('#input_social_status').prop('checked', true);
+           $('#input_nbkids').prop('disabled', false);
+        }else{
+            $('#input_social_status').prop('checked', false);  
+            $('#input_nbkids').prop('disabled', true);
+        }
+        $('#input_nbkids').val('{{$employee->number_of_kids}}');
+
 
         var imagePathvar = '{{$employee->profile_picture}}';
         var preview = document.getElementById('image-preview');
